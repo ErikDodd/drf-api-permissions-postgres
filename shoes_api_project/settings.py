@@ -25,6 +25,8 @@ SECRET_KEY = "django-insecure-e%#88js=$vdx82d7c$ai&*02h8*(976^day(7uqr$k@2w8q&e)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# ADD THE BELOW LINE LATER
+# ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
 ALLOWED_HOSTS = []
 
 
@@ -44,7 +46,6 @@ INSTALLED_APPS = [
 
     #Local
     "shoes",
-
 ]
 
 MIDDLEWARE = [
@@ -83,8 +84,12 @@ WSGI_APPLICATION = "shoes_api_project.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "db",
+        "PORT": 5432,
     }
 }
 

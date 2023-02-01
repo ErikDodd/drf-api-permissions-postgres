@@ -27,6 +27,9 @@ class ShoeTests(APITestCase):
         )
         test_shoe.save()
 
+    def setUp(self):
+        self.client.login(username="testuser1", password="pass")
+
     def test_shoes_model(self):
         shoe = Shoe.objects.get(id=1)
         actual_owner = str(shoe.owner)
@@ -63,7 +66,7 @@ class ShoeTests(APITestCase):
         self.assertEqual(Shoe.objects.get(id=2).name, "Ultraboost")
 
     def test_update_thing(self):
-        url = reverse("thing_detail", args=(1,))
+        url = reverse("shoe_detail", args=(1,))
         data = {
             "owner": 1,
             "name": "Jordan III",
@@ -83,4 +86,12 @@ class ShoeTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         shoes = Shoe.objects.all()
         self.assertEqual(len(shoes), 0)
+
+
+
+    def test_authentication_required(self):
+        self.client.logout()
+        url = reverse("shoe_list")
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
