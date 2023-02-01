@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-e%#88js=$vdx82d7c$ai&*02h8*(976^day(7uqr$k@2w8q&e)
 DEBUG = True
 
 # ADD THE BELOW LINE LATER
-# ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
 ALLOWED_HOSTS = []
 
 
@@ -83,15 +83,22 @@ WSGI_APPLICATION = "shoes_api_project.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": "db",
-        "PORT": 5432,
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "postgres",
+#         "USER": "postgres",
+#         "PASSWORD": "postgres",
+#         "HOST": "db",
+#         "PORT": 5432,
+#     }
+# }
 
 
 # Password validation
@@ -135,8 +142,13 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.AllowAny",
-    ]
-}
+# REST_FRAMEWORK = {
+#     "DEFAULT_PERMISSION_CLASSES": [
+#         "rest_framework.permissions.AllowAny",
+#     ],
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#             'rest_framework_simplejwt.authentication.JWTAuthentication',
+#             'rest_framework.authentication.BasicAuthentication',
+#             'rest_framework.authentication.SessionAuthentication',
+#     ],
+# }
