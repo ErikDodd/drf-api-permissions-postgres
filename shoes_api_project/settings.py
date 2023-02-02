@@ -89,6 +89,7 @@ DATABASES = {
     }
 }
 
+# Use Postgres instead of sqlite3
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.postgresql",
@@ -142,13 +143,16 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# REST_FRAMEWORK = {
-#     "DEFAULT_PERMISSION_CLASSES": [
-#         "rest_framework.permissions.AllowAny",
-#     ],
-#     'DEFAULT_AUTHENTICATION_CLASSES': [
-#             'rest_framework_simplejwt.authentication.JWTAuthentication',
-#             'rest_framework.authentication.BasicAuthentication',
-#             'rest_framework.authentication.SessionAuthentication',
-#     ],
-# }
+
+# https://www.django-rest-framework.org/api-guide/permissions/
+# https://www.django-rest-framework.org/api-guide/authentication/
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+            'rest_framework_simplejwt.authentication.JWTAuthentication',
+            'rest_framework.authentication.BasicAuthentication',
+            'rest_framework.authentication.SessionAuthentication',
+    ],
+}
